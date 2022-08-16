@@ -1,0 +1,36 @@
+name: 'Terraform GHA MAIN'
+on:
+#   push:
+#     branches:
+#       - 'main'
+  pull_request:
+    branches:
+      - 'main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+  
+  plan:
+    runs-on: ubuntu-latest
+#     if: github.event_name == 'pull_request'
+    steps:
+      - name: Plan
+        run: echo "Hello World!"
+  
+  apply:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+      - name: Apply
+        run: echo "Auto Apply"
+  
+#   merge:
+#     runs-on: ubuntu-latest
+#     if: github.event.pull_request.merged == true
+#     steps:
+#       - name: Apply when Merged
+        run: echo "Merge"
