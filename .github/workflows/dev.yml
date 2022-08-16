@@ -6,13 +6,10 @@ on:
       - '!main'
 #     types: [opened, synchronize, closed]
     
-#   pull_request:
-#     branches:
-#       - '*'
-#       - '!main'
-      
-  pull_request_review:
-    types: [submitted]
+  pull_request:
+    branches:
+      - '*'
+      - '!main'
 
 jobs:
   build:
@@ -30,8 +27,7 @@ jobs:
   
   apply:
     runs-on: ubuntu-latest
-    if: github.event.review.state == 'approved'
-#     if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request'
     steps:
       - name: Apply
         run: echo "Auto Apply"      
