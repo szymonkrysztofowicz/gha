@@ -23,7 +23,7 @@ jobs:
     if: github.event_name == 'push'
     steps:
       - name: Plan
-        run: echo "Plan"
+        run: echo "Plan!"
   
   apply:
     runs-on: ubuntu-latest
