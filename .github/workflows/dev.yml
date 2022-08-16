@@ -3,11 +3,11 @@ on:
   push:
     branches:
       - '*'
-      - '!main'
+      - '!master'
   pull_request:
     branches:
       - '*'
-      - '!main'
+      - '!master'
 
 jobs:
   build:
@@ -30,10 +30,10 @@ jobs:
       - name: Apply
         run: echo "Auto Apply"
   
-  merge:
-    runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true
-    steps:
-      - name: Apply when Merged
-        run: echo "Merge"
+#   merge:
+#     runs-on: ubuntu-latest
+#     if: github.event.pull_request.merged == true
+#     steps:
+#       - name: Apply when Merged
+#         run: echo "Merge"
       
