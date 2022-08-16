@@ -17,4 +17,6 @@ jobs:
     if: github.event_name == 'push'
     steps:
       - name: run a command
-        run: echo "Hello World!!"
+        run: echo "Commit do repo branch inny niż main, automatycznie terraform plan"
+        
+   
