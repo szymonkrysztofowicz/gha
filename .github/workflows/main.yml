@@ -1,5 +1,8 @@
 name: 'Terraform GHA MAIN'
 on:
+  push:
+    branches:
+      - 'main'
   pull_request:
     branches:
       - 'main'
