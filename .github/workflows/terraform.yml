@@ -4,6 +4,10 @@ on:
     branches:
       - '*'
       - '!main'
+  pull_request:
+    branches:
+      - '*'
+      - '!main'
 
 jobs:
   build:
@@ -12,9 +16,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
   
-  test:
+  plan:
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
     steps:
-      - name: run a command
+      - name: Plan
         run: echo "Hello World!!"
+  
+  apply:
+    runs-on: ubuntu-latest
+    needs: plan
+    if: github_event_name == 'pull_request'
+    steps:
+      - name: Apply
+        run: echo "Auto Apply"
+      
