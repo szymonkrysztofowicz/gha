@@ -10,6 +10,7 @@ on:
     branches:
       - '*'
       - '!main'
+    types: [opened, synchronize, closed]
 
 jobs:
   build:
@@ -27,7 +28,7 @@ jobs:
   
   apply:
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
+#     if: github.event_name == 'pull_request' 
     steps:
       - name: Apply
         run: echo "Auto Apply"      
