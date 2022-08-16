@@ -8,11 +8,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name Checkout
+      - name: Checkout
         uses: actions/checkout@v3
   
   test:
     runs-on: ubuntu-latest
     steps:
       - name: run a command
-        runs: echo "Hello World!"
+        run: echo "Hello World!"
