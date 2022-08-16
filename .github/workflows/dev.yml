@@ -20,7 +20,7 @@ jobs:
   
   plan:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.event.pull_request.merged == true
+    if: github.event_name == 'push' && github.event.pull_request.merged == false
     steps:
       - name: Plan
         run: echo "Hello World!!"
