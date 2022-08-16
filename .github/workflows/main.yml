@@ -27,10 +27,3 @@ jobs:
     steps:
       - name: Apply
         run: echo "Auto Apply"
-  
-#   merge:
-#     runs-on: ubuntu-latest
-#     if: github.event.pull_request.merged == true
-#     steps:
-#       - name: Apply when Merged
-        run: echo "Merge"
