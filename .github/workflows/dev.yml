@@ -29,7 +29,7 @@ jobs:
   apply:
     runs-on: ubuntu-latest
 #     if: github.event_name == 'pull_request' 
-    if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == false
     steps:
       - name: Apply
         run: echo "Auto Apply"      
