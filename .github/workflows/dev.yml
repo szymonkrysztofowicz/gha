@@ -6,10 +6,13 @@ on:
       - '!main'
 #     types: [opened, synchronize, closed]
     
-  pull_request:
-    branches:
-      - '*'
-      - '!main'
+#   pull_request:
+#     branches:
+#       - '*'
+#       - '!main'
+      
+  pull_request_review:
+    types: [submitted]
 
 jobs:
   build:
@@ -20,14 +23,15 @@ jobs:
   
   plan:
     runs-on: ubuntu-latest
-    if: (github.event_name == 'push' && !(github.event.action == 'closed' && github.event.pull_request.merged != true))
+    if: github.event_name == 'push'
     steps:
       - name: Plan
         run: echo "Hello World!!"
   
   apply:
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
+    if: github.event.review.state == 'approved'
+#     if: github.event_name == 'pull_request'
     steps:
       - name: Apply
         run: echo "Auto Apply"      
