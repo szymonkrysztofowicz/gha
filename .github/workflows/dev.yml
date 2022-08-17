@@ -6,7 +6,7 @@ on:
       - '!main'
     
 jobs:
-  build:
+  plan:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -15,9 +15,9 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         
-      - name: Terraform Format
-        id: fmt
-        run: terraform fmt -check
+#       - name: Terraform Format
+#         id: fmt
+#         run: terraform fmt -check
       
       - name: Terraform Init
         id: init
@@ -27,9 +27,6 @@ jobs:
         id: validate
         run: terraform validate -no-color
       
-  plan:
-    runs-on: ubuntu-latest
-    steps:
       - name: Plan
         id: plan
         run: terraform plan
