@@ -5,12 +5,6 @@ on:
       - '*'
       - '!main'
     
-  pull_request:
-    branches:
-      - '*'
-      - '!main'
-    types: [opened, synchronize, closed]
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,15 +14,14 @@ jobs:
   
   plan:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
     steps:
       - name: Plan
         run: echo "Plan"
   
   apply:
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
-#     if: github.event_name == 'pull_request' && github.event.pull_request.merged == false
+    needs: plan
+    environment: env
     steps:
       - name: Apply
         run: echo "Auto Apply"      
