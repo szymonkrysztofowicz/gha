@@ -68,11 +68,11 @@ jobs:
           name: tfplan
           
       - name: check folder
-        run: ls /home/runner/work/gha/gha/tfplan  
+        run: ls
         
       - name: Unzip artifact
-        run: unzip -o /home/runner/work/gha/gha/tfplan
+        run: unzip -o /home/runner/work/gha/gha/tfplan -d /home/runner/work/gha/gha/tfplan/tfplan
 
       - name: Apply
-        run: terraform apply tfplan
+        run: terraform apply /home/runner/work/gha/gha/tfplan/tfplan/tfplan
             #-auto-approve
