@@ -69,7 +69,7 @@ jobs:
           path: plan/tfplan
           
 #       - name: check folder
-#         run: l
+#         run: ls
         
 #       - name: Unzip artifact
 #         run: unzip -o /home/runner/work/gha/gha/tfplan -d /home/runner/work/gha/gha/tfplan
