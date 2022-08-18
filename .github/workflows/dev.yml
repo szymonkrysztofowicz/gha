@@ -66,7 +66,9 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: tfplan
+          path: ./plan/tfplan          
 
       - name: Apply
-        run: terraform apply ./plan/tfplan
+        run: terraform apply tfplan
+        working-directory: ./plan.tfplan
         #-auto-approve
