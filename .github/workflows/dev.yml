@@ -66,13 +66,14 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: tfplan
+          path: plan/tfplan
           
-      - name: check folder
-        run: ls
+#       - name: check folder
+#         run: ls
         
-      - name: Unzip artifact
-        run: unzip -o /home/runner/work/gha/gha/tfplan -d /home/runner/work/gha/gha/tfplan
+#       - name: Unzip artifact
+#         run: unzip -o /home/runner/work/gha/gha/tfplan -d /home/runner/work/gha/gha/tfplan
 
       - name: Apply
-        run: terraform apply /home/runner/work/gha/gha/tfplan/tfplan
+        run: terraform apply tfplan
             #-auto-approve
