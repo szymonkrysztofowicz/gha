@@ -73,6 +73,9 @@ jobs:
       - name: Unzip artifact
         run: mkdir /home/runner/work/gha/gha/plan && unzip -o /home/runner/work/gha/gha/tfplan -d /home/runner/work/gha/gha/plan
 
+      - name: check folder
+        run: ls /home/runner/work/gha/gha/plan
+        
       - name: Apply
         run: terraform apply /home/runner/work/gha/gha/plan/tfplan
             #-auto-approve
