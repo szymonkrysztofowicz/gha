@@ -68,7 +68,7 @@ jobs:
           name: tfplan
       
       - name: Unzip artifact
-        run: unzip ./tfplan.zip 
+        run: unzip /home/runner/work/gha/gha/tfplan.zip 
 
       - name: Apply
         run: terraform apply tfplan
