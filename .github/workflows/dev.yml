@@ -13,13 +13,13 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Create file for plan
-        run: mkdir ./plan && touch ./plan/tfplan 
+        run: mkdir plan && touch plan/tfplan 
           
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: tfplan
-          path: ./plan/tfplan     
+          path: plan/tfplan     
           
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
@@ -66,9 +66,9 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: tfplan
-          path: ./plan/tfplan          
+          path: plan/tfplan          
 
       - name: Apply
         run: terraform apply tfplan
-        working-directory: ./plan.tfplan
+        working-directory: plan
         #-auto-approve
