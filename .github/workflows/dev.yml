@@ -37,7 +37,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: tfplan
-          path: plan
+          path: plan/tfplan
   
   apply:
     runs-on: ubuntu-latest
