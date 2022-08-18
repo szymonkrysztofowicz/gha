@@ -63,12 +63,10 @@ jobs:
         run: terraform validate -no-color
         
       - name: Download Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/download-artifact@v3
         with:
-          name: tfplan
-          path: plan/tfplan          
+          name: tfplan       
 
       - name: Apply
         run: terraform apply tfplan
-        working-directory: plan
-        #-auto-approve
+            #-auto-approve
