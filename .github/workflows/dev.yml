@@ -11,10 +11,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        
+
+      - name: Create folder for plan
+        run: mkdir plan
+                    
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
-            
+      
       - name: Terraform Init
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
@@ -28,7 +31,13 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: terraform plan
+        run: terraform plan -out ./plan/tfplan
+        
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: tfplan
+          path: plan/tfplan
   
   apply:
     runs-on: ubuntu-latest
@@ -53,5 +62,15 @@ jobs:
       - name: Terraform Validate
         run: terraform validate -no-color
         
+      - name: Download Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: tfplan
+          path: plan/tfplan
+          
+#       - name: check folder
+#         run: ls /home/runner/work/gha/gha/plan/tfplan
+        
       - name: Apply
-        run: terraform apply -auto-approve
+        run: terraform apply /home/runner/work/gha/gha/plan/tfplan/tfplan
+            #-auto-approve
