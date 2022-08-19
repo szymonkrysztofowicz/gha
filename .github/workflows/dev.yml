@@ -11,10 +11,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Create folder for plan
-        run: mkdir plan
-                    
+                   
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
       
@@ -31,13 +28,13 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: terraform plan -out ./plan/tfplan
+        run: terraform plan -out tfplan
         
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: tfplan
-          path: plan/tfplan
+          name: tf-plan
+          path: tfplan
   
   apply:
     runs-on: ubuntu-latest
@@ -65,8 +62,8 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v3
         with:
-          name: tfplan
-          path: plan/tfplan
-                  
+          name: tf-plan
+          path: tfplan
+                 
       - name: Apply
         run: terraform apply tfplan/tfplan
