@@ -11,10 +11,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-#       - name: Create folder for plan
-#         run: mkdir plan
-                    
+                   
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
       
@@ -36,7 +33,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: tfplan
+          name: tf-plan
           path: tfplan
   
   apply:
@@ -65,7 +62,7 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v3
         with:
-          name: tfplan
+          name: tf-plan
           path: tfplan
                  
       - name: Apply
