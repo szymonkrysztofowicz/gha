@@ -1,6 +1,7 @@
 name: 'Terraform GHA'
 on:
   push:
+    types: edited
     branches:
       - '*'
       - '!main'
