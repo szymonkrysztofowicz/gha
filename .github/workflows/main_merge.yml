@@ -1,4 +1,4 @@
-name: 'Terraform GHA MAIN'
+name: 'Terraform GHA Main Merge'
 on:
   push:
     branches:
