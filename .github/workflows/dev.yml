@@ -8,10 +8,10 @@ on:
 env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  AWS_BUCKET: sk-terraform-2022-state-backend
-  AWS_BUCKET_KEY: tfstate
-  AWS_REGION: us-east-1
-  AWS_DYNAMODB_TABLE: tf-state-236117720236-us-east-1
+  AWS_BUCKET: ${{ secrets.AWS_BUCKET }}
+  AWS_BUCKET_KEY: ${{ secrets.AWS_BUCKET_KEY }}
+  AWS_REGION: ${{ secrets.AWS_REGION }}
+  AWS_DYNAMODB_TABLE: ${{ secrets.AWS_DYNAMODB_TABLE }}
   TERRAFORM_VERSION: 1.2.7
 
 jobs:
@@ -27,19 +27,22 @@ jobs:
           terraform_version: ${{ env.TERRAFORM_VERSION }}
       
       - name: Terraform Init          
-        run: terraform init
+        run: terraform init -backend-config=region=$AWS_REGION -backend-config=dynamodb_table=$AWS_DYNAMODB_TABLE -backend-config=bucket=$AWS_BUCKET -backend-config=key=$AWS_BUCKET_KEY
       
       - name: Terraform Validate
         run: terraform validate -no-color
       
       - name: Plan
-        run: terraform plan -out tfplan
+        run: |
+          rm -f tfplan
+          terraform plan -out tfplan
         
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: tf-plan
-          path: tfplan
+          path: ./terraform/tfplan
+          if-no-files-found: error
           retention-days: 7 #by default 90 days
   
   apply:
@@ -56,7 +59,7 @@ jobs:
           terraform_version: ${{ env.TERRAFORM_VERSION }}
             
       - name: Terraform Init
-        run: terraform init
+        run: terraform init -backend-config=region=$AWS_REGION -backend-config=dynamodb_table=$AWS_DYNAMODB_TABLE -backend-config=bucket=$AWS_BUCKET -backend-config=key=$AWS_BUCKET_KEY
       
       - name: Terraform Validate
         run: terraform validate -no-color
@@ -65,7 +68,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: tf-plan
-          path: tfplan
+          path: ./terraform
                  
       - name: Apply
-        run: terraform apply tfplan/tfplan
+        run: terraform apply tfplan
