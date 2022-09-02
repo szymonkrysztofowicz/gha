@@ -1,4 +1,4 @@
-name: 'Terraform GHA'
+name: 'Terraform GHA1'
 on:
   push:
     branches:
