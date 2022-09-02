@@ -11,7 +11,7 @@ env:
   AWS_BUCKET: sk-terraform-2022-state-backend
   AWS_BUCKET_KEY: tfstate
   AWS_REGION: us-east-1
-  AWS_DYNAMODB_TABLE: dynamodb-state-locking
+  AWS_DYNAMODB_TABLE: tf-state-236117720236-us-east-1
   TERRAFORM_VERSION: 1.2.7
 
 jobs:
