@@ -41,7 +41,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: tf-plan
-          path: ./terraform/tfplan
+          path: tfplan
           if-no-files-found: error
           retention-days: 7 #by default 90 days
   
@@ -68,7 +68,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: tf-plan
-          path: ./terraform
+          path: tfplan
                  
       - name: Apply
         run: terraform apply tfplan
