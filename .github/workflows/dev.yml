@@ -71,4 +71,4 @@ jobs:
           path: tfplan
                  
       - name: Apply
-        run: terraform apply tfplan
+        run: terraform apply tfplan/tfplan
