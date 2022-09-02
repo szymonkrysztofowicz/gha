@@ -1,4 +1,4 @@
-name: 'Prod deployment for AWS'
+name: 'Prod deployment for AWS!'
 on:
   pull_request:
     branches:
